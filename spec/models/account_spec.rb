@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Account do
+  context 'Validates' do
+    let!(:account) { create :account }
+
+    context 'parameters cannot be empty' do
+      it { expect(account).to be_valid }
+    end
+  end
 end
