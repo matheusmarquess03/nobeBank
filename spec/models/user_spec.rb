@@ -12,6 +12,12 @@ describe User do
       it { expect(user).to be_valid }
     end
 
+    context "when user is created" do
+      it "is created an account" do
+        expect(user.account).not_to be_nil
+      end
+    end
+
     it "has a unique user email" do
       user = build(:user, email: "n@nobe.com.br")
       expect(user).to be_valid
