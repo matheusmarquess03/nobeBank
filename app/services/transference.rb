@@ -50,7 +50,7 @@ class Transference
       time = Time.now.strftime("%H%M")
       day = Time.now.strftime("%u")
   
-      day.between?(6, 7) || !time.between?("0900", "1800")
+      day.between?("6", "7") || !time.between?("0900", "1800")
     end
 
     def transfer_fee_calculation
