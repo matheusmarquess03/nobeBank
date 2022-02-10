@@ -20,5 +20,18 @@ describe Withdraw do
         expect(withdraw.call?).to be_falsey
       end
     end
+
+    context "when withdraw is made" do
+      let(:account) { create(:account) }
+      let(:value) { FFaker::Random.rand(100.0..500.0).round(2) }
+      before do
+        @withdraw = Withdraw.new(value: value, recipient: account)
+      end
+      it "create withdraw" do
+        new_balance_recipient = account.balance - value
+        @withdraw.call?
+        expect(account.reload.balance).to eq(new_balance_recipient)
+      end
+    end
   end
 end
