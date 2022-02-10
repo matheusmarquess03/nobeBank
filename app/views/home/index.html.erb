@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
 <h1>
-  Bank Accounts
+  Conta Bancaria
 </h1>
 <table class="table table-stripped">
   <thead>
     <tr>
-      <th>Account Number</th>
-      <th>Balance</th>
-      <th>Action</th>
+      <th>Numero da Conta</th>
+      <th>Saldo</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -16,11 +16,11 @@
         <td><%= number_to_currency(current_user.account.balance) %></td>
         <td>
           <div class="row">
-            <%= button_to "Deposit", new_deposit_path, method: :get %>
-            <%= button_to "Withdraw", new_withdrawal_path, method: :get %>
-            <%= button_to "Transference", new_transference_path, method: :get %>
-            <%= button_to "Bank Statement", bank_statements_path, method: :get %>
-            <%= button_to "Cancel Account", edit_user_registration_path, method: :get %>
+            <div class="col-sm "><%= button_to "Depositar", new_deposit_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
+            <div class="col-sm "><%= button_to "Sacar", new_withdrawal_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
+            <div class="col-sm "><%= button_to "Transferir", new_transference_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
+            <div class="col-sm "><%= button_to "Extrato Bancário", bank_statements_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
+            <div class="col-sm "><%= button_to "Cancelar Conta", edit_user_registration_path, method: :get,  class: "btn btn-danger btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
           </div>        
         </td>
       </tr>

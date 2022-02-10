@@ -5,9 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
-    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
-    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -16,15 +15,32 @@
         <%= msg %>
       </div>
     <% end %>
-    <p class="navbar-text menu">
-      <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to "Edit profile", edit_user_registration_path, :class => "navbar-link" %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar-link" %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => "navbar-link" %> |
-        <%= link_to "Login", new_user_session_path, :class => "navbar-link" %>
-      <% end %>
+    <nav class="navbar navbar-expand-lg navbar navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">NobeBank</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+             
+            </li>
+          </ul>
+          <li class="d-flex">
+            <% if user_signed_in? %>
+            <p class="lead fw-normal mb-0 me-3" style="color: #ffffff;" style="text-align:center;">Bem Vindo, <strong><%= current_user.email%></strong>.</p>
+            
+            <%= link_to "Editar Perfil", edit_user_registration_path, :class => "navbar-link" %> |
+            <%= link_to "Sair", destroy_user_session_path, method: :delete, :class => "navbar-link" %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => "navbar-link" %> |
+            <%= link_to "Login", new_user_session_path, :class => "navbar-link" %>
+          <% end %>
+          </li>
+        </div>
+      </div>
+    </nav>
     </div>
     <div class="container">
       <%= yield %>

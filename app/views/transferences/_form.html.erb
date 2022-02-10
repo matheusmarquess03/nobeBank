@@ -1,42 +1,44 @@
-<%= form_with(model: transference, local: true, url: transferences_path) do |form| %>
-<div class="transaction">
-  <div>
-    <div class="field">
-      <%= form.label :value %>
-      <%= form.number_field :value %>
-    </div>
 
-    <div class="field">
-      <%= form.label :recipient %>
-      <%= form.text_field :recipient %>
-    </div>
-  <div>
 
-  
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConfirmation">
-        Create Transaction
-    </button>
-  
-
-  <!-- Modal -->
-  <div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalConfirmationTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalConfirmationTitle">Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <%= form_with(model: transference, local: true, url: transferences_path) do |form| %>
+          <div class="field center">
+            <%= form.label "Valor da Transferência" %>
+            <%= form.number_field :value, autofocus: true, autocomplete: "email", class: "form-control form-control-lg", placeholder: "Digite o valor - Ex.: 10.00" %>
+          </div><br />
+          <div class="field center">
+            <%= form.label "Recebedor" %>
+            <%= form.text_field :recipient, autofocus: true, autocomplete: "Recebedor", class: "form-control form-control-lg", placeholder: "Digite a conta do Recebedor" %>
+          </div><br />
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Transferir
           </button>
-        </div>
-        <div class="modal-body">
-          <%= form.label :password %>
-          <%= form.password_field :password %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= form.submit %>
-        </div>
+          <br>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Digite sua senha para confirmar a transferencia.</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= form.label "Senha" %>
+                  <%= form.password_field :password, class: "form-control form-control-lg" %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                  <%= form.submit "Transferir", class: "btn btn-primary btn-sm", style: "padding-left: 2.5rem; padding-right: 2.5rem;" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
-<% end %>
+  <%= button_to "Voltar", home_index_path, method: :get, class: "btn btn-info btn-sm", style: "margin-top: -5px margin-right: 10px" %>
+</section>

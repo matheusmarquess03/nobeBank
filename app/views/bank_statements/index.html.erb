@@ -1,30 +1,31 @@
-<h1>Bank Statement</h1>
+<h1>Extrato bancário</h1>
 
 <%= form_tag(bank_statements_path, method: :get) do %>
   <%= date_field_tag :initial_date, params[:initial_date], required: true %>
   <%= date_field_tag :final_date, params[:final_date], required: true %>
-  <%= submit_tag "Search transactions" %>
+  <%= submit_tag "Emitir Extrato Bancário", class: "btn btn-warning btn-sm", style: "margin-top: -5px margin-right: 10px" %>
 <% end %>
-<% if @transactions.empty? && params[:initial_date] && params[:final_date] %>
-  <h1>No transactions made between this date.</h1>
+<% if @transfers.empty? && params[:initial_date] && params[:final_date] %>
+  <h4 style="color: red">Nenhuma transação feita entre esta data.</h4>
 <% end %>
-
+    <br />
    <table class="table table-striped table-dark">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Value</th>
+          <th>Data</th>
+          <th>Tipo de Operação</th>
+          <th>Valor</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @transactions.each do |transacation| %>
+        <% @transfers.each do |transfer| %>
           <tr>
-            <td><%= transacation.created_at.strftime("%d/%m/%Y %H:%M") %></td>
-            <td><%= transacation.kind.titleize %></td>
-            <td><%= transacation.value %></td>
+            <td><%= transfer.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= transfer.kind.titleize %></td>
+            <td><%= transfer.value %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+  <%= button_to "Voltar", home_index_path, method: :get, class: "btn btn-info btn-sm", style: "margin-top: -5px margin-right: 10px" %>

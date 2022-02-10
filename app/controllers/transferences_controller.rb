@@ -19,6 +19,8 @@ class TransferencesController < ApplicationController
     else
       respond_to do |format|
         format.html { redirect_to new_transference_path, notice: "Senha Incorreta" }
+      end
+    end
   end
 
   private

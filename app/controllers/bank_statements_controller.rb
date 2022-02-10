@@ -6,10 +6,10 @@ class BankStatementsController < ApplicationController
   def index
     @transfers = []
 
-    @transfer = TransferQuery.find_between_dates(
+    @transfers = TransferQuery.find_between_dates(
       initial_date: bank_statement_params[:initial_date].to_date,
       final_date: bank_statement_params[:final_date].to_date,
-      bank_account: current_user.account,
+      account: current_user.account,
     ) if bank_statement_params[:initial_date] && bank_statement_params[:final_date]
   end
 

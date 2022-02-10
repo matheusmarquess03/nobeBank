@@ -1,13 +1,21 @@
-<%= form_with(model: deposit, local: true, url: deposits_path) do |form| %>
-  
-  <div class="transaction">        
-    <div class="field center">
-      <%= form.label :value %>  
-      <%= form.number_field :value %>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <%= form_with(model: deposit, local: true, url: deposits_path) do |form| %>
+          <div class="field center">
+            <%= form.label "Valor do Depósito" %>
+            <%= form.number_field :value, autofocus: true, autocomplete: "email", class: "form-control form-control-lg", placeholder: "Digite o valor - Ex.: 10.00" %>
+          </div>
+      
+          <br>
+          <div class="actions">
+            <%= form.submit "Depositar", class: "btn btn-primary btn-sm", style: "padding-left: 2.5rem; padding-right: 2.5rem;" %>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
+  <%= button_to "Voltar", home_index_path, method: :get, class: "btn btn-info btn-sm", style: "margin-top: -5px margin-right: 10px" %>
+</section>
 
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  </div>          
-<% end %>

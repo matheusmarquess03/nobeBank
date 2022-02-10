@@ -35,15 +35,15 @@ class Transference
     end
   
     def new_balance_sender
-      @sender.balance - (@value + transfer_fee_calculation + transference_over_thousand)
+      @sender.balance - (@value.to_f + transfer_fee_calculation + transference_over_thousand)
     end
   
     def new_balance_recipient
-      @recipient.balance + @value
+      @recipient.balance + @value.to_f
     end
 
     def transference_over_thousand
-      @value > 1000 ? 10 : 0
+      @value.to_f > 1000 ? 10 : 0
     end
     
     def its_weekend?
