@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_one :account
   after_create :create_account
 
+  def active_for_authentication?
+    super && account.enabled?
+  end
+
   private
 
   def create_account

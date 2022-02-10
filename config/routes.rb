@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :withdrawals, only: [:new, :create]
   resources :transferences, only: [:new, :create]
   resources :bank_statements, only: [:index]
+  resources :cancel_accounts, only: [:destroy]
   root to: "home#index"
 end
