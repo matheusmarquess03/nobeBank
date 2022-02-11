@@ -4,6 +4,8 @@
   <img src="https://user-images.githubusercontent.com/39783638/81606899-3ae48680-93aa-11ea-8146-48d193ed7a9b.png" height="150">
 </p>
 
+Link site deployed: https://appnobebank.herokuapp.com/
+
 The application handles the movements that a customer can make when arriving at a bank's teller.
 The customer can do:
 * Register, Edit and Close Your Account
