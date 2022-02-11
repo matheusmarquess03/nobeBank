@@ -1,5 +1,5 @@
 class TransferencesController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_recipient, only: [:create]
 
   def new
@@ -8,7 +8,12 @@ class TransferencesController < ApplicationController
 
   def create
     if current_user.valid_password?(transference_params[:password])
-      set_transference_service
+      #set_transference_service
+      @transference_service = Transference.new(
+        value: transference_params[:value],
+        sender: current_user.account,
+        recipient: @recipient,
+      )
       respond_to do |format|
         if @transference_service.call?
           format.html { redirect_to root_path, notice: "Tranferência realizada com sucesso." }
@@ -26,11 +31,7 @@ class TransferencesController < ApplicationController
   private
 
   def set_transference_service
-    @transference_service = Transference.new(
-      value: transference_params[:value],
-      sender: current_user.account,
-      recipient: @recipient,
-    )
+    
   end
 
   def transference_params

@@ -12,12 +12,7 @@ class Transference
         begin
           remove_from_sender
           add_to_recipient
-          Transfer.create!(
-            value: @value,
-            recipient: @recipient,
-            sender: @sender,
-            kind: Transfer.kinds[:transference],
-          )
+          transfer_params
         rescue ActiveRecord::RecordInvalid
           raise ActiveRecord::Rollback
         end
@@ -25,6 +20,15 @@ class Transference
     end
   
     private
+
+    def transfer_params
+      Transfer.create!(
+        value: @value,
+        recipient: @recipient,
+        sender: @sender,
+        kind: Transfer.kinds[:transference],
+      )
+    end  
   
     def remove_from_sender
       @sender.update!(balance: new_balance_sender)

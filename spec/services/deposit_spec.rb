@@ -4,7 +4,7 @@ describe Deposit do
   describe ".call?" do
     context "when call is true" do
       let(:account) { create(:account) }
-      let(:value) { 10.00 }
+      let(:value) { FFaker::Random.rand(100.0..500.0).round(2) }
 
       it "create Deposit with valid params" do
         deposit = Deposit.new(value: value, recipient: account)
@@ -13,7 +13,7 @@ describe Deposit do
     end
     context "when call is false" do
       let(:account) { create(:account) }
-      let(:value) { -10.00 }
+      let(:value) { FFaker::Random.rand(-100.0..-10.0) }
 
       it "not create Deposit with invalid params" do
         deposit = Deposit.new(value: value, recipient: account)

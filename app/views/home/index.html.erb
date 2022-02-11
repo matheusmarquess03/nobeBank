@@ -8,6 +8,27 @@
       <th>Numero da Conta</th>
       <th>Saldo</th>
       <th>Ações</th>
+      <th><button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Solicitar Saldo
+      </button>
+      <br>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Saldo</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h2>
+              <%= number_to_currency(current_user.account.balance) %>
+            </h2>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div></th>
     </tr>
   </thead>
   <tbody>
@@ -20,7 +41,7 @@
             <div class="col-sm "><%= button_to "Sacar", new_withdrawal_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
             <div class="col-sm "><%= button_to "Transferir", new_transference_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
             <div class="col-sm "><%= button_to "Extrato Bancário", bank_statements_path, method: :get,  class: "btn btn-secondary btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
-            <div class="col-sm "><%= button_to "Cancelar Conta", edit_user_registration_path, method: :get,  class: "btn btn-danger btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
+            <div class="col-sm "><%= button_to "Encerrar Conta", edit_user_registration_path, method: :get,  class: "btn btn-danger btn-sm", style: "margin-top: -5px margin-right: 10px" %></div>
           </div>        
         </td>
       </tr>

@@ -2,7 +2,7 @@ class Transfer < ApplicationRecord
   belongs_to :recipient, class_name: "Account"
   belongs_to :sender, class_name: "Account"
 
-  enum kind: [:deposito, :saque, :transferencia]
+  enum kind: [:deposit, :withdraw, :transference]
 
   validates :kind, presence: true
   validates :value, presence: true

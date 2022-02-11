@@ -10,12 +10,7 @@ class Deposit
     ActiveRecord::Base.transaction do
       begin
         @recipient.update(balance: new_balance)
-        Transfer.create!(
-          value: @value,
-          recipient: @recipient,
-          sender: @recipient,
-          kind: Transfer.kinds[:deposit],
-        )
+        deposit_params
       rescue ActiveRecord::RecordInvalid
         raise ActiveRecord::Rollback
       end
@@ -26,5 +21,14 @@ class Deposit
 
   def new_balance
     @recipient.balance + @value.to_f
+  end
+
+  def deposit_params
+    Transfer.create!(
+      value: @value,
+      recipient: @recipient,
+      sender: @recipient,
+      kind: Transfer.kinds[:deposit],
+    )
   end
 end

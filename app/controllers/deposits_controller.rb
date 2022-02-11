@@ -1,5 +1,5 @@
 class DepositsController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   def new
     @deposit = Transfer.new
   end

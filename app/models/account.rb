@@ -9,11 +9,8 @@ class Account < ApplicationRecord
   private
 
   def generate_account_number
-    if current_user.account.account_number.present?
-      self.account_number = current_user.account.account_number
-    else
-     self.account_number = Random.rand(10...100)
-    end
+    #self.account_number = Random.rand(10...100)
+    self.account_number = "%05d" % self.user.id if self.user
   end
 
 end
