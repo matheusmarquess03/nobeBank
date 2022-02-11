@@ -9,8 +9,6 @@ class Account < ApplicationRecord
   private
 
   def generate_account_number
-    #self.account_number = Random.rand(10...100)
-    self.account_number = "%05d" % self.user.id if self.user
+    self.account_number = '%05d' % user.id if user
   end
-
 end

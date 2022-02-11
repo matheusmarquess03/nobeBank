@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Deposit
   attr_reader :value, :recipient
 
@@ -8,12 +10,10 @@ class Deposit
 
   def call?
     ActiveRecord::Base.transaction do
-      begin
-        @recipient.update(balance: new_balance)
-        deposit_params
-      rescue ActiveRecord::RecordInvalid
-        raise ActiveRecord::Rollback
-      end
+      @recipient.update(balance: new_balance)
+      deposit_params
+    rescue ActiveRecord::RecordInvalid
+      raise ActiveRecord::Rollback
     end
   end
 
@@ -28,7 +28,7 @@ class Deposit
       value: @value,
       recipient: @recipient,
       sender: @recipient,
-      kind: Transfer.kinds[:deposit],
+      kind: Transfer.kinds[:deposit]
     )
   end
 end

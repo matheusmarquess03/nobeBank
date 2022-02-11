@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WithdrawalsController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   def new
     @withdraw = Transfer.new
   end
@@ -9,14 +11,14 @@ class WithdrawalsController < ApplicationController
       set_withdraw_service
       respond_to do |format|
         if @withdraw_service.call?
-          format.html { redirect_to root_path, notice: "Saque realizado com sucesso." }
+          format.html { redirect_to root_path, notice: 'Saque realizado com sucesso.' }
         else
-          format.html { render :new, notice: "Ocorreu um erro com seu saque." }
+          format.html { render :new, notice: 'Ocorreu um erro com seu saque.' }
         end
       end
     else
       respond_to do |format|
-        format.html { redirect_to new_withdrawal_path, notice: "Senha Incorreta." }
+        format.html { redirect_to new_withdrawal_path, notice: 'Senha Incorreta.' }
       end
     end
   end
@@ -26,7 +28,7 @@ class WithdrawalsController < ApplicationController
   def set_withdraw_service
     @withdraw_service = Withdraw.new(
       value: withdraw_params[:value],
-      recipient: current_user.account,
+      recipient: current_user.account
     )
   end
 

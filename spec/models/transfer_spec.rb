@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Transfer do
@@ -9,4 +11,3 @@ describe Transfer do
     end
   end
 end
-

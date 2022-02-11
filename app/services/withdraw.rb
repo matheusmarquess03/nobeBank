@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Withdraw
   attr_reader :value, :recipient
 
@@ -8,22 +10,21 @@ class Withdraw
 
   def call?
     ActiveRecord::Base.transaction do
-      begin
-        @recipient.update!(balance: new_balance)
-        withdraw_params
-      rescue ActiveRecord::RecordInvalid
-        raise ActiveRecord::Rollback
-      end
+      @recipient.update!(balance: new_balance)
+      withdraw_params
+    rescue ActiveRecord::RecordInvalid
+      raise ActiveRecord::Rollback
     end
   end
 
   private
+
   def withdraw_params
     Transfer.create!(
       value: @value,
       recipient: @recipient,
       sender: @recipient,
-      kind: Transfer.kinds[:withdraw],
+      kind: Transfer.kinds[:withdraw]
     )
   end
 

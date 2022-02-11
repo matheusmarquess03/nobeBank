@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -6,7 +8,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   validates :password, presence: true
-  validates_uniqueness_of :email 
+  validates_uniqueness_of :email
 
   has_one :account
   after_create :create_account
@@ -19,8 +21,6 @@ class User < ApplicationRecord
 
   def create_account
     @account = Account.new(user: self, balance: 0)
-    unless @account.save
-      raise "A conta não pode ser criada."
-    end
+    raise 'A conta não pode ser criada.' unless @account.save
   end
 end
